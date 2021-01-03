@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class PriceController extends Controller
 {
-    public function getAll()
+    public function index()
     {
         $datas = DB::table('prices')
             ->join('merchants', 'prices.merchant_id', '=', 'merchants.id')
@@ -26,7 +26,7 @@ class PriceController extends Controller
         return view('pages.product.view', compact('datas'));
     }
 
-    public function getOne($id)
+    public function show($id)
     {
         $data = DB::table('prices')
             ->join('merchants', 'prices.merchant_id', '=', 'merchants.id')
@@ -44,7 +44,7 @@ class PriceController extends Controller
         return view('product', compact('data'));
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         //input $request to table products and prices
         Price::create($request->all());
@@ -59,7 +59,7 @@ class PriceController extends Controller
         return null;
     }
 
-    public function delete()
+    public function destroy()
     {
 //delete row from table product(id) and price(product_id)
 //        $data = Price::findOrFail($id);

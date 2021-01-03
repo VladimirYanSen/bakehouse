@@ -45,11 +45,14 @@
                                                     <div class="modal-body">
                                                         @csrf
                                                         @method('put')
-                                                        <form method="post" action="{{ route('category.update', $data->id) }}" enctype="multipart/form-data">
+                                                        <form method="post" action="" enctype="multipart/form-data">
                                                             <table class="table table-borderless">
                                                                 <tr>
                                                                     <td>id</td>
-                                                                    <td><input readonly type="text" name="id" class="form-control" value="{{ $data->id }}"></td>
+                                                                    <td><input readonly hidden type="text" name="id"
+                                                                               class="form-control"
+                                                                               value="{{ $data->id }}">{{ $data->id }}
+                                                                    </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>name</td>
@@ -69,7 +72,9 @@
                                             </div>
                                         </div>
 
-                                        <button class="btn btn-fill btn-danger" data-toggle="modal" data-target="deleteCategoryModal{{ $data->id }}">delete</button>
+                                        <button class="btn btn-fill btn-danger" data-toggle="modal"
+                                                data-target="deleteCategoryModal{{ $data->id }}">delete
+                                        </button>
                                         <div id="deleteCategoryModal{{$data->id}}" class="modal fade" role="dialog">
                                             <div class="modal-dialog">
                                                 <!-- Modal content-->
@@ -85,7 +90,7 @@
                                                     <div class="modal-body">
                                                         @csrf
                                                         @method('put')
-                                                        <form method="post" action="{{ route('category.destroy', $data->id) }}" enctype="multipart/form-data">
+                                                        <form method="post" action="" enctype="multipart/form-data">
                                                             <table class="table table-borderless">
                                                                 <tr>
                                                                     <td>id</td>

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
-    public function getAll(){
+    public function index(){
         $datas = DB::table('categories')
             ->select()
             ->where('is_delete', '=', false)
@@ -17,7 +17,7 @@ class CategoryController extends Controller
         return view('pages.category.view', compact('datas'));
     }
 
-    public function getOne($id){
+    public function show($id){
 
         $data = DB::table('categories')
             ->select()
@@ -28,7 +28,7 @@ class CategoryController extends Controller
 
     }
 
-    public function create(Request $request){
+    public function store(Request $request){
 
 //        input $request
         Category::create($request->all());
@@ -53,7 +53,7 @@ class CategoryController extends Controller
         return view('pages.category.view', compact('datas'));
     }
 
-    public function delete($id){
+    public function destroy($id){
         $data = Category::findOrFail($id);
         if ($data) {
             Category::where('id', $id)

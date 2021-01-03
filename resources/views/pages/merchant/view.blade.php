@@ -88,7 +88,7 @@
                                     <td>
                                         {{--<button class="btn btn-fill btn-info">view</button>--}}
                                         <a class="btn btn-fill btn-info"
-                                           href="{{ route('price.getMerchantProduct', 'merchant_id => $merchantId') }}">view</a>
+                                           href="">view</a>
                                     </td>
                                 </tr>
                             @endforeach

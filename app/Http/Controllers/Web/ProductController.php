@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    public function getAll(){
+    public function index(){
         $datas = DB::table('products')
             ->join('categories', 'products.category_id', '=', 'categories.id')
             ->select('products.*','categories.name as category_name')
@@ -19,7 +19,7 @@ class ProductController extends Controller
         return view('product', compact('datas'));
     }
 
-    public function getOne($id){
+    public function show($id){
         $data = DB::table('products')
             ->join('categories', 'products.category_id', '=', 'categories.id')
             ->select('products.*', 'categories.name')
@@ -29,7 +29,7 @@ class ProductController extends Controller
         return view('product', compact('data'));
     }
 
-    public function create(Request $request){
+    public function store(Request $request){
         Product::create($request->all());
     }
 
@@ -38,7 +38,7 @@ class ProductController extends Controller
         $data->update($request->all());
     }
 
-    public function delete($id){
+    public function destroy($id){
         $data = Product::findOrFail($id);
         if ($data) {
             Product::where('id', $id)
@@ -53,13 +53,6 @@ class ProductController extends Controller
             ->get();
         return view('addproduct', compact('datas'));
     }
-
-
-
-
-
-
-
 
     //function for multiple input.
 

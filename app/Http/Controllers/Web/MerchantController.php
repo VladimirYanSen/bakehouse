@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class MerchantController extends Controller
 {
-    public function getAll(){
+    public function index(){
         $datas = DB::table('merchants')
             ->select()
             ->where('is_delete', '=', false)
@@ -17,7 +17,7 @@ class MerchantController extends Controller
         return view('pages.merchant.view', compact('datas'));
     }
 
-    public function getOne($id){
+    public function show($id){
         $data = DB::table('merchants')
             ->select()
             ->where('id = ?', $id)
@@ -26,7 +26,7 @@ class MerchantController extends Controller
         return view('pages.merchant.view', compact('data'));
     }
 
-    public function create(Request $request){
+    public function store(Request $request){
         //input $request
         Merchant::create($request->all());
         //back to table view with new data
@@ -42,7 +42,7 @@ class MerchantController extends Controller
         $data->update($request->all());
     }
 
-    public function delete($id){
+    public function destroy($id){
         $data = Merchant::findOrFail($id);
         if ($data) {
             Merchant::where('id', $id)

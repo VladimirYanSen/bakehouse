@@ -27,7 +27,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'api\CategoryController@index')->name('home')->middleware('auth');
+Route::get('category/add', function (){
+    return view('pages.category.add');
+})->name('add_category');
+Route::get('merchant/add', function (){
+    return view('pages.merchant.add');
+})->name('add_merchant');
+
+Route::get('/home', 'Web\CategoryController@index')->name('home')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('icons', ['as' => 'pages.icons', 'uses' => 'PageController@icons']);
@@ -38,10 +45,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('typography', ['as' => 'pages.typography', 'uses' => 'PageController@typography']);
     Route::get('upgrade', ['as' => 'pages.upgrade', 'uses' => 'PageController@upgrade']);
 
-//    Route::resource('category', 'api\CategoryController');
-//    Route::resource('merchant', 'api\MerchantController');
-//    Route::resource('product', 'api\ProductController');
-//    Route::resource('price', 'api\PriceController');
+    Route::resource('category', 'Web\CategoryController');
+    Route::resource('merchant', 'Web\MerchantController');
+    Route::resource('product', 'Web\ProductController');
+    Route::resource('price', 'Web\PriceController');
 });
 
 Route::group(['middleware' => 'auth'], function () {
